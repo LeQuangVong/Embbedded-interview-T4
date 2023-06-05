@@ -7,25 +7,79 @@
 
 #include <quanlicuahang.hpp>
 
+/*
+ * Function: getID
+ * Description: A method of class Drink
+ * Input:
+ *    None
+ * Output:
+ *    ID Drink
+*/
+
 int Drink::getID(){
     return Drink::ID;
 }
+
+/*
+ * Function: setName
+ * Description: A method of class Drink
+ * Input:
+ *    name drink
+ * Output:
+ *    none
+*/
 
 void Drink::setName(string _name){
     this -> name = _name;
 }
 
+/*
+ * Function: getName
+ * Description: A method of class Drink
+ * Input:
+ *    None
+ * Output:
+ *    name Drink
+*/
+
 string Drink::getName(){
     return Drink::name;
 }
+
+/*
+ * Function: setPrice
+ * Description: A method of class Drink
+ * Input:
+ *    price of drink
+ * Output:
+ *    none
+*/
 
 void Drink::setPrice(double _price){
     this -> price = _price;
 }
 
+/*
+ * Function: getPrice
+ * Description: A method of class Drink
+ * Input:
+ *    None
+ * Output:
+ *    price of drink
+*/
+
 double Drink::getPrice(){
     return Drink::price;
 }
+
+/**
+     * Function: Constructor 
+     * Description: used to let the user choose the functions of the manager, use switch... case and do...while.
+     * Input:
+     * None
+     * Output:
+     * none
+    */
 
 Manager::Manager(){
     int num;
@@ -69,11 +123,29 @@ Manager::Manager(){
     } while (num != 0);    
 }
 
+/*
+ * Function: quantityDrink
+ * Description: A method of class Manager, This function is for entering the number of tables.
+ * Input:
+ *    none
+ * Output:
+ *    quantity
+*/
+
 int Manager::quantityDrink(int quantity){
     cout << "Nhap so luong ban: ";
     cin << quantity;
     return quantity;
 }
+
+/*
+ * Function: addDrink
+ * Description: A method of class Manager, This function is used to add drinks and then upload them to the drinks database.
+ * Input:
+ *    name, price of drink
+ * Output:
+ *    databaseDrink
+*/
 
 void Manager::addDrink(){
     string name;
@@ -85,6 +157,15 @@ void Manager::addDrink(){
     Drink Drink(name, price);
     DatabaseDrink.push_back(Drink);
 }
+
+/*
+ * Function: fixDrink
+ * Description: A method of class Manager, This function is used to edit existing drink information on the beverage database.
+ * Input:
+ *    name, price of drink need fix
+ * Output:
+ *    databaseDrink
+*/
 
 void Manager::fixDrink(){
     int num;
@@ -126,6 +207,15 @@ void Manager::fixDrink(){
     }
 }
 
+/*
+ * Function: delDrink
+ * Description: A method of class Manager, This function is used to delete the information of the drink to be deleted in the beverage database.
+ * Input:
+ *    name, price of drink need delete
+ * Output:
+ *    databaseDrink
+*/
+
 Manager::delDrink(){
     int id;
     cout << "Delete Drink"<< endl;
@@ -141,6 +231,15 @@ Manager::delDrink(){
     } 
 }
 
+/*
+ * Function: listDrink
+ * Description: A method of class Manager, This function is used to display the information of the list of drinks in the beverage database
+ * Input:
+ *    none
+ * Output:
+ *    list Drink
+*/
+
 void Manager::listDrinK(){
     cout << "ID \t Name \t Price" << endl;
     for(Drink Drink : DatabaseDrink){
@@ -148,10 +247,27 @@ void Manager::listDrinK(){
     }
 }
 
+/*
+ * Function: getDatabaseDrink
+ * Description: A method of class Manager
+ * Input:
+ *    None
+ * Output:
+ *    databaseDrink
+*/
+
 vector<Drink>Manager::getDatabaseDrink(){
     return Manager::DatabaseDrink;
 }
 
+/**
+ * Function: Constructor 
+ * Description: used to select functions for kernel using switch...case and do...while.
+ * Input:
+ * Table's Database, quantity of table
+ * Output:
+ * none
+*/
 
 Staff::Staff(vector<table> DatabaseTable, int quantityTable){
     for(Drink drink : DatabaseDrink){
@@ -211,6 +327,15 @@ Staff::Staff(vector<table> DatabaseTable, int quantityTable){
     } while (num != 0);    
 }
 
+/*
+ * Function: orderDrink
+ * Description: A method of class Staff, This function is used to order drinks by table number
+ * Input:
+ *    table's number
+ * Output:
+ *    quantity of Drink
+*/
+
 void Staff::orderDrink(int numberTable){
     int quantity;
     int id;
@@ -230,12 +355,31 @@ void Staff::orderDrink(int numberTable){
     }
 }
 
+/*
+ * Function: list_Drink
+ * Description: A method of class Staff, This function is used to display the information of the list of drinks in the beverage database
+ * Input:
+ *    None
+ * Output:
+ *    list of Drink
+*/
+
+
 void Staff::list_Drink(){
     cout << "ID \t Name \t Price" << endl;
     for(Drink Drink : DatabaseDrink){
         cout << Drink.getID() << "\t" << Drink.getName() << "\t" << Drink.getPrice() << endl;
     }
 }
+
+/*
+ * Function: fix_Drink
+ * Description: A method of class Staff, This function is used to display the information of the list of drinks in the beverage database
+ * Input:
+ *    number table
+ * Output:
+ *    detele Drink or order drink
+*/
 
 void Staff::fix_Dink(int numberTable){
     int num;
@@ -267,6 +411,15 @@ void Staff::fix_Dink(int numberTable){
     }
 }
 
+/*
+ * Function: del_Drink
+ * Description: A method of class Staff, This function is used to delete drinks that customers have ordered previously in the beverage database
+ * Input:
+ *    number table
+ * Output:
+ *    none
+*/
+
 void Staff::del_Dink(int numberTable){
     int id;
     cout << "Delete Drink" << endl;
@@ -274,6 +427,15 @@ void Staff::del_Dink(int numberTable){
         DatabaseTable[numberTable-1].DatabaseQuatityDrink.erase(DatabaseTable[numberTable-1].DatabaseQuatityDrink.begin()+i);
     }
 }
+
+/*
+ * Function: pay_Drink
+ * Description: A method of class Staff, This function is used to pay for the drinks that the customer has ordered.
+ * Input:
+ *    number table
+ * Output:
+ *    total
+*/
 
 void Staff::pay_Drink(int numberTable){
     int total = 0;
@@ -287,6 +449,15 @@ void Staff::pay_Drink(int numberTable){
     }
 }
 
+/*
+ * Function: statusAllTable
+ * Description: A method of class Staff, This function is used to check whether the table is empty or occupied
+ * Input:
+ *    number table
+ * Output:
+ *    total
+*/
+
 void Staff::statusAllTable(){
     for(table Table : DatabaseTable){
         cout << "|Table " << Table.numberTable <<":";
@@ -299,6 +470,15 @@ void Staff::statusAllTable(){
     cout <<"|" << endl;
 }
 
+/*
+ * Function: new_Table
+ * Description: A method of class Staff, This function is used to create a new table.
+ * Input:
+ *    number table
+ * Output:
+ *    none
+*/
+
 void Staff::new_Table(int numberTable){
     cout << "New Table";
     if(numberTable > 0 && numberTable <= DatabaseTable.size()){
@@ -310,6 +490,15 @@ void Staff::new_Table(int numberTable){
         }
     }
 }
+
+/**
+ * Function: Constructor 
+ * Description: This function is to select an employee or a manager.
+ * Input:
+ * None
+ * Output:
+ * none
+*/
 
 Menu::Menu(){
     int num;

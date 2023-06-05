@@ -13,6 +13,11 @@
 #include<vector>
 using namespace std;
 
+/*
+* Function: class Drink
+* Description: The class contains the methods and properties of the drinks.
+*/ 
+
 class Drink {
     private:
         int ID;
@@ -26,6 +31,11 @@ class Drink {
         double getPrice();
         int getID();
 };
+
+/*
+* Function: class Manager
+* Description: The class contains the methods and properties of the manager.
+*/ 
 
 class Manager {
     private:
@@ -41,6 +51,11 @@ class Manager {
         vector<Drink> getDatabaseDrink;
 };
 
+/*
+* Function: quantityDrink, table
+* Description: typedef used for default list for data type
+*/
+
 typedef struct {
     Drink name;
     int quantity;
@@ -52,6 +67,10 @@ typedef struct {
     vector<quantityDrink> DatabaseQuatityDrink;
 }table;
 
+/*
+* Function: class Staff
+* Description: The class contains the methods and properties of the Staff.
+*/ 
 
 class Staff {
     private:
@@ -67,6 +86,11 @@ class Staff {
         void new_Table(int numberTable);
 
 };
+
+/*
+* Function: class Menu
+* Description: The class contains the methods and properties of the Menu.
+*/ 
 
 class Menu {
     private:
