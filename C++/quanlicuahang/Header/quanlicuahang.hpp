@@ -1,3 +1,13 @@
+/*
+* File: quanlicuahang.hpp
+* Author: Le Quang Vong
+* Date: 02/06/2023
+* Description:This file is a header file that contains all the prototypes to manage the drink
+*/
+
+#ifndef __QUANLICUAHANG_H
+#define __QUANLICUAHANG_H
+#include <stdio.h>
 #include<iostream>
 #include<string>
 #include<vector>
@@ -5,29 +15,22 @@ using namespace std;
 
 class Drink {
     private:
+        int ID;
         string name;
         double price;
     public:
         Drink(string name, double price);
+        void setName(string _name);
         string getName();
-        void setPrice(double price);
+        void setPrice(double _price);
         double getPrice();
-
+        int getID();
 };
-
-string Drink::getName(){
-    return Drink::name;
-}
-
-double Drink::getPrice(){
-    return Drink::price;
-}
-
 
 class Manager {
     private:
         vector<Drink> DatabaseDrink;
-        int quantityTable();
+        int quantityTable(int quantity = 0);
         void addDrink();
         void fixDrink();
         void delDrink();
@@ -49,26 +52,27 @@ typedef struct {
     vector<quantityDrink> DatabaseQuatityDrink;
 }table;
 
+
 class Staff {
     private:
         vector<table> DatabaseTable;
         vector<Drink> DatabaseDrink;
     public:
         Staff(vector<table> DatabaseTable, int quantityTable);
+        void orderDrink(int numberTable);
+        void del_Dink(int numberTable);
+        void list_Drink();
+        void fix_Dink(int numberTable);
+        void pay_Drink(int numberTable);
+        void new_Table(int numberTable);
+
 };
 
-Staff::Staff(vector<table> DatabaseTable, int quantityTable){
-    for(Drink drink : DatabaseDrink){
-        DatabaseDrink.push_back(drink);
-    }
-
-    for(int i = 1; i <= quantityTable;i++){
-        table table;
-        table.status = 0;
-        table.numberTable = i;
-        DatabaseTable.push_back(table);
-    }
-}
-int main(){
-    return 0;
-}
+class Menu {
+    private:
+        Manager ql;
+        Staff nv;
+    public:
+        Menu();
+};
+#endif
